@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import NavDrawer from "./NavDrawer";
 
 export default function Header() {
@@ -26,12 +27,24 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Right: Hamburger (always visible) + avatar stub */}
+          {/* Right: Auth + Hamburger */}
           <div className="flex items-center gap-3">
-            <Link href="/profile" className="hidden md:inline-flex items-center gap-2 px-2 py-1 rounded-md hover:bg-white/5">
-              <div className="w-6 h-6 rounded-full bg-white/15" />
-              <span className="text-white/80 text-sm">Account</span>
-            </Link>
+            <SignedIn>
+              <UserButton 
+                appearance={{ 
+                  elements: { 
+                    userButtonAvatarBox: "w-7 h-7",
+                    userButtonPopoverCard: "glass",
+                    userButtonPopoverActionButton: "hover:bg-white/5"
+                  } 
+                }} 
+              />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="btn">Sign in</button>
+              </SignInButton>
+            </SignedOut>
 
             <button
               aria-label="Open menu"

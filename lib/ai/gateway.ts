@@ -1,6 +1,6 @@
 export async function llmCall({ 
   messages, 
-  model = "accounts/fireworks/models/llama-v3p1-70b-instruct", 
+  model = "xai/grok-code-fast-1", 
   temperature = 0.6, 
   max_tokens = 800, 
   timeoutMs = 3000, 

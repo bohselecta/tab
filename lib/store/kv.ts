@@ -8,8 +8,7 @@ export async function getUserProjects(userId: string): Promise<any[]> {
   return items.filter(Boolean);
 }
 
-export async function saveProject(spec: any): Promise<void> {
-  const userId = 'fake-user'; // In real implementation, get from auth
+export async function saveProject(spec: any, userId: string): Promise<void> {
   await kv.set(`p:${spec.id}`, spec);
   await kv.sadd(`u:${userId}:projects`, spec.id);
 }
